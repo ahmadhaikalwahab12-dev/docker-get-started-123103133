@@ -5,6 +5,9 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+FROM build AS test
+RUN npm test
+
 FROM node:22-alpine AS final
 WORKDIR /app
 ENV NODE_ENV=production
